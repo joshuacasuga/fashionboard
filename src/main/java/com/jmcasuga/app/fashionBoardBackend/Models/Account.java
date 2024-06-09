@@ -1,5 +1,7 @@
 package com.jmcasuga.app.fashionBoardBackend.Models;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -11,19 +13,19 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountID;
 
-    @Column
+    @Column(name="email")
     private String email;
     
-    @Column
+    @Column(name="first_name")
     private String firstName;
 
-    @Column
+    @Column(name="last_name")
     private String lastName;
 
-    @Column
+    @Column(name="phone_number")
     private String phoneNum;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Photos> photos;
 
