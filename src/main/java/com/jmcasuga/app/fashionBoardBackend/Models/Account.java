@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 @Table(name = "accounts")
 public class Account {
 
+    // PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountID;
@@ -30,9 +31,9 @@ public class Account {
     @JsonManagedReference
     private Set<Photos> photos;
 
-    //@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JsonManagedReference
-    //private Set<Outfit> outfits;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Outfit> outfits;
 
     public long getID(){
         return accountID;

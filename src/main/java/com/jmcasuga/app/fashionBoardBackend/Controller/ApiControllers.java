@@ -35,6 +35,12 @@ public class ApiControllers {
         return accountRepo.findAll();
     }
 
+    @GetMapping("/photos")
+    public List<Photos> getPhotos() {
+        List<Photos> photosList = photosRepo.findByAccountID((long)1);
+        return photosList;
+    }
+
     @PostMapping("/save")
     public String saveUser(@RequestBody Account account){
         accountRepo.save(account);

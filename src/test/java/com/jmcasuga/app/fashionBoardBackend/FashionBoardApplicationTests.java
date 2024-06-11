@@ -11,11 +11,11 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.jmcasuga.app.fashionBoardBackend.Models.Account;
-//import com.jmcasuga.app.fashionBoardBackend.Models.Outfit;
 import com.jmcasuga.app.fashionBoardBackend.Models.Photos;
+import com.jmcasuga.app.fashionBoardBackend.Models.Outfit;
 import com.jmcasuga.app.fashionBoardBackend.Repo.AccountRepo;
-//import com.jmcasuga.app.fashionBoardBackend.Repo.OutfitRepo;
 import com.jmcasuga.app.fashionBoardBackend.Repo.PhotosRepo;
+import com.jmcasuga.app.fashionBoardBackend.Repo.OutfitRepo;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -44,8 +44,8 @@ public class FashionBoardApplicationTests {
 	@Autowired
 	private PhotosRepo photosRepo;
 
-	//@Autowired
-	//private OutfitRepo outfitRepo;
+	@Autowired
+	private OutfitRepo outfitRepo;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -104,16 +104,12 @@ public class FashionBoardApplicationTests {
 
 		photosRepo.save(image3);
 
-		/* 
 		Outfit outfit1 = new Outfit();
-		outfit1.setHeadwear(null);
-		outfit1.setTop(image1);
-		outfit1.setBottoms(image2);
-		outfit1.setShoes(image3);
-		outfit1.setAccount(user1AccountInfo);
+		outfit1.setHeadwearID(image3);
+		outfit1.setAccount(user2AccountInfo);
 
 		outfitRepo.save(outfit1);
-		*/
+
 	}
 
 	@Test
@@ -124,5 +120,6 @@ public class FashionBoardApplicationTests {
 		accountRepo.deleteAll();
 		jdbcTemplate.execute("ALTER TABLE accounts AUTO_INCREMENT = 1");
 		jdbcTemplate.execute("ALTER TABLE photos AUTO_INCREMENT = 1");
+		jdbcTemplate.execute("ALTER TABLE accounts AUTO_INCREMENT = 1");
 	}
 }
