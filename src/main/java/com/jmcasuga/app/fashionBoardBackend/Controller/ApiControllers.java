@@ -13,12 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jmcasuga.app.fashionBoardBackend.Models.Account;
 import com.jmcasuga.app.fashionBoardBackend.Repo.AccountRepo;
+import com.jmcasuga.app.fashionBoardBackend.Models.Photos;
+import com.jmcasuga.app.fashionBoardBackend.Repo.PhotosRepo;
 
 @RestController
 public class ApiControllers {
     
     @Autowired
     private AccountRepo accountRepo;
+
+    @Autowired
+    private PhotosRepo photosRepo;
 
     @GetMapping("/")
     public String getPage() {

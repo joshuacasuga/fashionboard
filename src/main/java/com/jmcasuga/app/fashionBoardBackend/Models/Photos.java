@@ -1,6 +1,6 @@
 package com.jmcasuga.app.fashionBoardBackend.Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -9,12 +9,20 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "photos")
 public class Photos {
+
+    // PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long photoID;
 
+    // FK
+    @ManyToOne
+    @JoinColumn(name = "accountID")
+    @JsonBackReference
+    private Account account;
+
     @Column(name="upload_date")
-    private Date uploadDate;
+    private String uploadDate;
 
     @Column(name="image_size")
     private double imageSize;
@@ -31,20 +39,15 @@ public class Photos {
     @Column(name="image_path")
     private String imagePath;
 
-    @ManyToOne
-    @JoinColumn(name = "accountID")
-    @JsonBackReference
-    private Account account;
-
     public long getPhotoID(){
         return photoID;
     }
 
-    public Date getUploadDate(){
+    public String getUploadDate(){
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate){
+    public void setUploadDate(String uploadDate){
         this.uploadDate = uploadDate;
     }
 
@@ -86,5 +89,13 @@ public class Photos {
 
     public void setImagePath(String imagePath){
         this.imagePath = imagePath;
+    }
+
+    public void setAccount(Account account){
+        this.account = account;
+    }
+
+    public long getAccountId(){
+        return account.getID();
     }
 }
